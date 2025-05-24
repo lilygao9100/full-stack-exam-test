@@ -4,6 +4,7 @@ import { useState } from "react";
 import { WeatherProvider } from "../context/WeatherContext"; // Weather Context
 import WeatherCard from "../components/WeatherCard"; // WeatherCard Component
 import { useWeather } from "../hooks/useWeather"; // useWeather hook
+import Header from "../components/Header"; // Import the Header Component
 
 const HomePage = () => {
   const [city, setCity] = useState<string>("Melbourne");
@@ -14,11 +15,10 @@ const HomePage = () => {
   return (
     <WeatherProvider>
       <div className="min-h-screen bg-gray-100 py-8 px-4">
-        <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-          <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">
-            Weather App
-          </h1>
-
+        {/* Header Component */}
+        <Header />
+        
+        <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg mt-8">
           <div className="mb-6">
             <label htmlFor="city" className="block text-lg text-gray-700 mb-2">
               Enter a city:
@@ -41,6 +41,7 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
 
 
 
