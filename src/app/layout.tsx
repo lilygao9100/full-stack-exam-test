@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { WeatherProvider } from '../context/WeatherContext';
+import '../styles/globals.css';
 
 interface LayoutProps {
   children: ReactNode;
