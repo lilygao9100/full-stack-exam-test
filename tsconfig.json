@@ -18,7 +18,7 @@
     // NOTE, IT MAY RUN ERROR
     // when you do npm run dev, manually change PLS!
     // change to - jsx: "react-jsx"
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "incremental": true,
     "plugins": [
       {

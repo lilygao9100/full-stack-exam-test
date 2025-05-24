@@ -1,24 +1,36 @@
-import React from "react";
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import { WeatherProvider } from "../context/WeatherContext"; // Make sure WeatherProvider is imported
+import WeatherCard from "../components/WeatherCard";
+import { useWeather } from "../hooks/useWeather";
 
 const HomePage = () => {
-  return (
-    <div className="flex flex-col items-center justify-center p-4">
-      <h1 className="text-3xl font-bold">Welcome to the Teach Team Web System</h1>
-      <p className="mt-4 text-base p-2">
-        This system helps tutors and lecturers manage their teaching and learning tasks effectively.
-      </p>
+  const [city, setCity] = useState<string>("Melbourne");
 
-      <Image
-        src="/Images/about-page-1.jpg"
-        alt="RMIT Uni picture"
-        width={800}
-        height={500}
-        className="p-4 flex-auto relative h-[500px]"
-      />
-    </div>
+  // Custom hook to fetch weather data for the specified city
+  useWeather(city);
+
+  return (
+    <WeatherProvider>
+      <div className="container mx-auto p-8">
+        <h1 className="text-3xl font-bold">Weather App</h1>
+        <div className="my-4">
+          <input
+            className="border p-2"
+            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder="Enter city"
+          />
+        </div>
+        <WeatherCard />
+      </div>
+    </WeatherProvider>
   );
-}
+};
 
 export default HomePage;
+
+
 

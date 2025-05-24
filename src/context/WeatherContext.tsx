@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+// src/context/WeatherContext.tsx
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface WeatherContextProps {
   weatherData: any;
@@ -19,6 +20,9 @@ export const WeatherProvider = ({ children }: { children: ReactNode }) => {
 
 export const useWeatherContext = () => {
   const context = useContext(WeatherContext);
-  if (!context) throw new Error("useWeatherContext must be used within WeatherProvider");
+  if (!context) {
+    throw new Error("useWeatherContext must be used within WeatherProvider");
+  }
   return context;
 };
+
