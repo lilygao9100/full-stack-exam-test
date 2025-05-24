@@ -1,4 +1,5 @@
-// src/context/WeatherContext.tsx
+"use client"; // Add this line at the top
+
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface WeatherContextProps {
@@ -25,4 +26,5 @@ export const useWeatherContext = () => {
   }
   return context;
 };
+
 

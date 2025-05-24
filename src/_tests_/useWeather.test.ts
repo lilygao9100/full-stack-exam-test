@@ -1,6 +1,6 @@
 import { render, screen, act } from "@testing-library/react";
 import { useWeather } from "../hooks/useWeather";
-import { WeatherProvider } from "../context/weatherContext";
+import { WeatherProvider } from "../context/WeatherContext";
 import { fetchWeather } from "../lib/fetchWeather";
 
 jest.mock("../lib/fetchWeather");

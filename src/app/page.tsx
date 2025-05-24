@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { WeatherProvider } from "../context/WeatherContext"; // Make sure WeatherProvider is imported
+import { WeatherProvider } from "../context/WeatherContext";
 import WeatherCard from "../components/WeatherCard";
 import { useWeather } from "../hooks/useWeather";
 
