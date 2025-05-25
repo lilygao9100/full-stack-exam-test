@@ -1,6 +1,5 @@
-"use client"; // Add this line at the top
-
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+// src/context/WeatherContext.tsx
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface WeatherContextProps {
   weatherData: any;
@@ -11,6 +10,9 @@ const WeatherContext = createContext<WeatherContextProps | undefined>(undefined)
 
 export const WeatherProvider = ({ children }: { children: ReactNode }) => {
   const [weatherData, setWeatherData] = useState<any>(null);
+
+  // Log to ensure data is being updated
+  console.log("Weather data in context:", weatherData);
 
   return (
     <WeatherContext.Provider value={{ weatherData, setWeatherData }}>
@@ -26,5 +28,6 @@ export const useWeatherContext = () => {
   }
   return context;
 };
+
 
 

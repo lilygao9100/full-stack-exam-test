@@ -13,9 +13,7 @@ const HomePage = () => {
   useWeather(city);
 
   const handleCitySubmit = () => {
-    // You can add additional validation here if needed
     if (city.trim() !== "") {
-      // When the button is clicked, it triggers the weather fetching logic
       console.log(`Fetching weather data for ${city}`);
     }
   };
@@ -58,6 +56,7 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
 
 
 
