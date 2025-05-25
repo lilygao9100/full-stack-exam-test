@@ -1,10 +1,17 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { useWeatherContext } from "../context/WeatherContext"; // Weather Context
 import { useWeather } from "../hooks/useWeather"; // useWeather hook
 
 const WeatherCard: FC = () => {
-  const { weatherData } = useWeatherContext(); // Access the weather data from context
-  const { loading, error } = useWeather("Melbourne"); // Fetch weather for Melbourne and get loading and error state
+  const [isMounted, setIsMounted] = useState(false);
+  const { weatherData } = useWeatherContext();
+  const { loading, error } = useWeather("Melbourne");
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null; // Prevent SSR mismatch
 
   if (loading) {
     return <div className="text-center text-gray-500">Loading...</div>; // Show loading text
