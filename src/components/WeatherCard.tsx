@@ -1,15 +1,24 @@
 import { FC } from "react";
 import { useWeatherContext } from "../context/WeatherContext"; // Weather Context
+import { useWeather } from "../hooks/useWeather"; // useWeather hook
 
 const WeatherCard: FC = () => {
-  const { weatherData } = useWeatherContext(); // Access weather data from context
+  const { weatherData } = useWeatherContext(); // Access the weather data from context
+  const { loading, error } = useWeather("Melbourne"); // Fetch weather for Melbourne and get loading and error state
 
-  if (!weatherData) {
-    return <div className="text-center text-gray-500">Loading...</div>;
+  if (loading) {
+    return <div className="text-center text-gray-500">Loading...</div>; // Show loading text
   }
 
-  // Log the data to verify it's available
-  console.log("Weather data in WeatherCard: ", weatherData);
+  if (error) {
+    return <div className="text-center text-red-500">{error}</div>; // Show error text if there was an issue
+  }
+
+  if (!weatherData) {
+    return <div className="text-center text-gray-500">No weather data available.</div>; // If no weather data
+  }
+
+  console.log("Weather data in WeatherCard: ", weatherData); // Log to verify data
 
   return (
     <div className="mt-6 p-6 bg-blue-50 rounded-lg shadow-lg">
@@ -37,6 +46,7 @@ const WeatherCard: FC = () => {
 };
 
 export default WeatherCard;
+
 
 
 
