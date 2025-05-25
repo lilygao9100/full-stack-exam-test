@@ -1,5 +1,5 @@
 {
-  "name": "s4033503-s4020866-a1",
+  "name": "weather-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,20 +11,20 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
+    "autoprefixer": "^10.4.21",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.486.0",
     "next": "15.2.4",
+    "postcss": "^8.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-google-recaptcha": "^3.1.0",
     "react-icons": "^5.5.0",
     "react-rnd": "^10.5.2",
     "tailwind-merge": "^3.1.0",
-    "tailwindcss-animate": "^1.0.7",
     "tailwindcss": "^3.3.3",
-    "postcss": "^8.5.3",
-    "autoprefixer": "^10.4.21"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.26.9",
@@ -48,7 +48,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
-    "ts-jest": "^29.3.1",
+    "ts-jest": "^29.3.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
