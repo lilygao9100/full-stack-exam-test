@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect'; // Add this import
 import { render, screen } from '@testing-library/react';
 import WeatherCard from '../components/WeatherCard';
 import { WeatherProvider } from '../context/WeatherContext';
