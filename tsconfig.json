@@ -15,11 +15,9 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    // NOTE, IT MAY RUN ERROR
-    // when you do npm run dev, manually change PLS!
-    // change to - jsx: "react-jsx"
-    "jsx": "preserve",
+    "jsx": "react-jsx", // CHANGED from "preserve" to "react-jsx"
     "incremental": true,
+    "types": ["jest"], // ADD this line for Jest support
     "plugins": [
       {
         "name": "next"
@@ -36,9 +34,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "jest.setup.ts",
-    "jest.d.ts"
-, "jest.config.js"  ],
+    "jest.setup.ts"
+  ],
   "exclude": [
     "node_modules"
   ]

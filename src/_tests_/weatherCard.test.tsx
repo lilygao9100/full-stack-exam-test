@@ -1,42 +1,98 @@
+import '@testing-library/jest-dom/extend-expect'; // Add this import
 import { render, screen } from '@testing-library/react';
 import WeatherCard from '../components/WeatherCard';
 import { WeatherProvider } from '../context/WeatherContext';
 
-// Mock weather data
-const mockWeatherData = {
-  name: 'Melbourne',
-  sys: { country: 'AU' },
-  weather: [{ description: 'clear sky' }],
-  main: { temp: 296.76, humidity: 75, pressure: 1015 },
-  wind: { speed: 1.5 },
-  clouds: { all: 0 },
-};
+// Mock the useWeather hook
+jest.mock('../hooks/useWeather', () => ({
+  useWeather: jest.fn(),
+}));
 
 describe('WeatherCard', () => {
-  it('should render the weather data correctly', () => {
-    // Mock the context by providing the data to the WeatherProvider
-    render(
-      <WeatherProvider>
-        <WeatherCard />
-      </WeatherProvider>
-    );
-
-    // Set the weather data in the context (this could be done more efficiently in your code)
-    screen.getByText(/loading/i); // Make sure it's loading initially
-    screen.getByText(/clear sky/i); // Check if weather description is rendered
-    screen.getByText(/Melbourne/i); // Check if the city name is rendered
-    screen.getByText(/humidity/i); // Check if humidity is displayed
-    screen.getByText(/wind/i); // Check if wind speed is displayed
+  beforeEach(() => {
+    // Clear all mocks before each test
+    jest.clearAllMocks();
   });
 
-  it('should display loading state when data is not available', () => {
-    // Mock empty weather data
+  it('should show loading state', () => {
+    // Mock loading state
+    require('../hooks/useWeather').useWeather.mockReturnValue({
+      loading: true,
+      error: null,
+    });
+
     render(
       <WeatherProvider>
         <WeatherCard />
       </WeatherProvider>
     );
-    screen.getByText(/loading/i); // Ensure that "Loading..." is displayed
+
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+  });
+
+  it('should show error state', () => {
+    // Mock error state
+    require('../hooks/useWeather').useWeather.mockReturnValue({
+      loading: false,
+      error: 'Failed to fetch',
+    });
+
+    render(
+      <WeatherProvider>
+        <WeatherCard />
+      </WeatherProvider>
+    );
+
+    expect(screen.getByText('Failed to fetch')).toBeInTheDocument();
+  });
+
+  it('should show no data state', () => {
+    // Mock no data state
+    require('../hooks/useWeather').useWeather.mockReturnValue({
+      loading: false,
+      error: null,
+    });
+
+    render(
+      <WeatherProvider>
+        <WeatherCard />
+      </WeatherProvider>
+    );
+
+    expect(screen.getByText('No weather data available.')).toBeInTheDocument();
+  });
+
+  it('should display weather data when available', () => {
+    // Mock successful data
+    require('../hooks/useWeather').useWeather.mockReturnValue({
+      loading: false,
+      error: null,
+    });
+
+    // Mock context data
+    const mockWeatherData = {
+      name: 'Melbourne',
+      sys: { country: 'AU' },
+      weather: [{ description: 'clear sky' }],
+      main: { temp: 296.76, humidity: 75, pressure: 1015 },
+      wind: { speed: 1.5 },
+      clouds: { all: 0 },
+    };
+
+    jest.spyOn(require('../context/WeatherContext'), 'useWeatherContext')
+      .mockImplementation(() => ({ weatherData: mockWeatherData }));
+
+    render(
+      <WeatherProvider>
+        <WeatherCard />
+      </WeatherProvider>
+    );
+
+    expect(screen.getByText('Melbourne, AU')).toBeInTheDocument();
+    expect(screen.getByText('clear sky')).toBeInTheDocument();
+    expect(screen.getByText('24°C')).toBeInTheDocument(); // 296.76K → 23.61°C → rounded to 24
+    expect(screen.getByText('Humidity: 75%')).toBeInTheDocument();
+    expect(screen.getByText('Wind: 1.5 m/s')).toBeInTheDocument();
   });
 });
 
