@@ -1,9 +1,8 @@
-// src/components/WeatherCard.tsx
 import { FC } from "react";
 import { useWeatherContext } from "../context/WeatherContext"; // Weather Context
 
 const WeatherCard: FC = () => {
-  const { weatherData } = useWeatherContext(); // Access the weather data from context
+  const { weatherData } = useWeatherContext(); // Access weather data from context
 
   if (!weatherData) {
     return <div className="text-center text-gray-500">Loading...</div>;
@@ -38,6 +37,7 @@ const WeatherCard: FC = () => {
 };
 
 export default WeatherCard;
+
 
 
 

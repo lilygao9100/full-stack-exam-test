@@ -1,25 +1,19 @@
-import { FC, ReactNode } from 'react';
-import { WeatherProvider } from '../context/WeatherContext';
-import '../styles/globals.css';
+// src/app/layout.tsx
+import { WeatherProvider } from "../context/WeatherContext"; // Weather Context
+import { ReactNode } from "react";
 
-interface LayoutProps {
-  children: ReactNode;
-}
-
-const Layout: FC<LayoutProps> = ({ children }) => {
+const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    // Wrap the root layout with html and body tags
-    <html lang="en">
-      <body>
-        <WeatherProvider>
-          {children}
-        </WeatherProvider>
-      </body>
-    </html>
+    <WeatherProvider>
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    </WeatherProvider>
   );
 };
 
 export default Layout;
+
 
 
 

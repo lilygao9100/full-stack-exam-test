@@ -1,6 +1,9 @@
 // src/context/WeatherContext.tsx
+"use client";
+
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
+// Define the WeatherContext and its data structure
 interface WeatherContextProps {
   weatherData: any;
   setWeatherData: (data: any) => void;
@@ -21,6 +24,7 @@ export const WeatherProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+// Custom hook to access the WeatherContext
 export const useWeatherContext = () => {
   const context = useContext(WeatherContext);
   if (!context) {
@@ -28,6 +32,8 @@ export const useWeatherContext = () => {
   }
   return context;
 };
+
+
 
 
 
