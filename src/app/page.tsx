@@ -9,8 +9,16 @@ import Header from "../components/Header"; // Import the Header Component
 const HomePage = () => {
   const [city, setCity] = useState<string>("Melbourne");
 
-  // Fetch weather data for the specified city
+  // Trigger weather data fetching when city changes
   useWeather(city);
+
+  const handleCitySubmit = () => {
+    // You can add additional validation here if needed
+    if (city.trim() !== "") {
+      // When the button is clicked, it triggers the weather fetching logic
+      console.log(`Fetching weather data for ${city}`);
+    }
+  };
 
   return (
     <WeatherProvider>
@@ -27,12 +35,21 @@ const HomePage = () => {
               id="city"
               type="text"
               value={city}
-              onChange={(e) => setCity(e.target.value)}
+              onChange={(e) => setCity(e.target.value)} // Update city name on input change
               placeholder="Type city name"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
+          {/* Submit Button */}
+          <button
+            onClick={handleCitySubmit} // Trigger city submission
+            className="w-full py-2 bg-blue-600 text-white rounded-lg mt-4 hover:bg-blue-700"
+          >
+            Get Weather
+          </button>
+
+          {/* WeatherCard to show fetched data */}
           <WeatherCard />
         </div>
       </div>
@@ -41,6 +58,7 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
 
 
 
