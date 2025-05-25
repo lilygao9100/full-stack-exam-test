@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { WeatherProvider } from '../context/WeatherContext';
+import Sidebar from '../components/Sidebar'; // Import the Sidebar
 import '../styles/globals.css';
 
 interface LayoutProps {
@@ -12,7 +13,15 @@ const Layout: FC<LayoutProps> = ({ children }) => {
     <html lang="en">
       <body>
         <WeatherProvider>
-          {children}
+          <div className="flex">
+            {/* Sidebar - displayed on all pages */}
+            <Sidebar />
+            
+            {/* Main content area */}
+            <main className="flex-1 p-8">
+              {children}
+            </main>
+          </div>
         </WeatherProvider>
       </body>
     </html>
@@ -20,6 +29,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
 };
 
 export default Layout;
+
 
 
 
