@@ -1,14 +1,17 @@
 module.exports = {
-  preset: 'ts-jest',
-  testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
+  preset: "ts-jest",
+  testEnvironment: "jsdom",
+  setupFilesAfterEnv: [
+    "@testing-library/jest-dom/extend-expect"  // Ensure this is in the setup
+  ],
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
+    "^.+\\.tsx?$": "ts-jest",
   },
-  moduleDirectories: ['node_modules', 'src'],
+  moduleDirectories: ["node_modules", "src"],
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1',
+    "^@/(.*)$": "<rootDir>/src/$1",
   },
-  testPathIgnorePatterns: ['/node_modules/', '/.next/'],
+  testPathIgnorePatterns: ["/node_modules/", "/.next/"],
 };
+
 
