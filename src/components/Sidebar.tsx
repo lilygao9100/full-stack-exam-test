@@ -1,5 +1,4 @@
 // src/components/Sidebar.tsx
-
 import Link from 'next/link'; // For navigation between pages
 import { FC } from 'react';
 
@@ -10,19 +9,13 @@ const Sidebar: FC = () => {
         <h1 className="text-2xl font-bold mb-6">Weather App</h1>
         <ul>
           <li className="mb-4">
-            <Link href="/" passHref>
-              <a className="hover:bg-blue-700 p-2 block rounded-md">Home</a>
-            </Link>
+            <Link href="/" className="hover:bg-blue-700 p-2 block rounded-md">Home</Link>
           </li>
           <li className="mb-4">
-            <Link href="/about" passHref>
-              <a className="hover:bg-blue-700 p-2 block rounded-md">About</a>
-            </Link>
+            <Link href="/about" className="hover:bg-blue-700 p-2 block rounded-md">About</Link>
           </li>
           <li className="mb-4">
-            <Link href="/contact" passHref>
-              <a className="hover:bg-blue-700 p-2 block rounded-md">Contact</a>
-            </Link>
+            <Link href="/contact" className="hover:bg-blue-700 p-2 block rounded-md">Contact</Link>
           </li>
         </ul>
       </div>
@@ -31,3 +24,4 @@ const Sidebar: FC = () => {
 };
 
 export default Sidebar;
+
